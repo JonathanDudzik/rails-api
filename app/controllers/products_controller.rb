@@ -15,19 +15,19 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new({
+    @product = Product.new({
       title: params[:title],
       description: params[:description],
       image_url: params[:image_url],
       price: params[:price]
     })
 
-    if product.save
+    if @product.save
       # do something on success
-      render json: product, status: :created
+      render json: @product, status: :created
     else
       # do something on failure
-      render json: product.errors, status: :unprocessable_entity
+      render json: @product.errors, status: :unprocessable_entity
     end
   end
 
@@ -38,6 +38,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:book).permit(:title, :description, :image_url, :price)
+    params.require(:product).permit(:title, :description, :image_url, :price, :image)
   end
 end
