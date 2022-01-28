@@ -1,67 +1,59 @@
-#---
-# Excerpted from "Agile Web Development with Rails 6",
-# published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material,
-# courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose.
-# Visit http://www.pragmaticprogrammer.com/titles/rails6 for more book information.
-#---
-# encoding: utf-8
-Product.delete_all
-# . . .
-Product.create! do |p|
-  p.title = 'Docker for Rails Developers'
-  p.description = 'Build, Ship, and Run Your Applications Everywhere.
-      Docker does for DevOps what Rails did for web development—it gives you 
-      a new set of superpowers. Gone are “works on my machine” woes and lengthy 
-      setup tasks, replaced instead by a simple, consistent, Docker-based 
-      development environment that will have your team up and running in seconds. 
-      Gain hands-on, real-world experience with a tool thats rapidly becoming 
-      fundamental to software development. Go from zero all the way to production 
-      as Docker transforms the massive leap of deploying your app in the cloud 
-      into a baby step.'
-  p.image_url = nil
-  p.price = 38.00
-  # p.image.attach(io: File.open("./storage/architecture.png"), filename: 'architecture.png')
-  puts p.image.attached?
-  # puts File.dirname("./storage/architecture.png")
+Book.delete_all
+Book.create! do |book|
+  book.title = 'Belgian Fairy Tales'
+  book.language = 'English'
+  book.author = 'Griffis, William Elliot'
+  book.published = 1919
+  book.excerpt = 'We Americans ought to know who the Walloons are; 
+    for, in 1624, some of these people—even before the Dutch 
+    mothers and fathers, boys and girls came—settled New York 
+    and New Jersey. It was they who introduced on our soil the 
+    marguerite, or white-and-yellow daisy, and they were the 
+    first farmers in the Middle States. Moreover, when New 
+    Netherland received a civil government, it was named Nova 
+    Belgica, or New Belgium.'
+  book.image.attach(io: File.open("./storage/default-images/belgiam-fairy-tales.jpg"), filename: 'belgiam-fairy-tales.jpg')
+  book.save # will cause the blob path to update
+  book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
 end
 # . . .
-Product.new do |p|
-  p.title = 'Build Chatbot Interactions'
-  p.description = 'Responsive, Intuitive Interfaces with Ruby
-The next step in the evolution of user interfaces is here. 
-Chatbots let your users interact with your service in their
-own natural language. Use free and open source tools along 
-with Ruby to build creative, useful, and unexpected interactions 
-for users. Take advantage of the Lita framework’s step-by-step 
-implementation strategy to simplify bot development and testing.
-From novices to experts, chatbots are an area in which everyone 
-can participate. Exercise your creativity by creating chatbot 
-skills for communicating, information, and fun.'
-  p.image_url = nil
-  p.price = 20.00
-  p.save
-end
-
-Product.new do |p|
-  p.title = "test"
-  p.description = 'test test'
-  p.image_url = nil
-  p.price = 90.00
-  p.save
+Book.create! do |book|
+  book.title = 'Alice’s Adventures in Wonderland'
+  book.language = 'English'
+  book.author = 'Lewis Carol'
+  book.published = 1865
+  book.excerpt = 'The rabbit-hole went straight on like a tunnel for some way, 
+  and then dipped suddenly down, so suddenly that Alice had not a moment to 
+  think about stopping herself before she found herself falling down a very 
+  deep well.'
+  book.image.attach(io: File.open("./storage/default-images/alice-in-wonderland.jpg"), filename: 'alice-in-wonderland.jpg')
+  book.save # will cause the blob path to update
+  book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
 end
 # . . .
-Product.create!(title: 'Programming Crystal',
-  description:'Create High-Performance, Safe, Concurrent Apps.
-      Crystal is for Ruby programmers who want more performance or for 
-      developers who enjoy working in a high-level scripting environment. Crystal 
-      combines native execution speed and concurrency with Ruby-like syntax, so 
-      you will feel right at home. This book, the first available on Crystal, 
-      shows you how to write applications that have the beauty and elegance of a 
-      modern language, combined with the power of types and modern concurrency 
-      tooling. Now you can write beautiful code that runs faster, scales better, 
-      and is a breeze to deploy.',
-  image_url: nil,
-  price: 40.00
-)
+Book.create! do |book|
+  book.title = 'Great Expectations'
+  book.language = 'English'
+  book.author = 'Charles Dickens'
+  book.published = 1867
+  book.excerpt = 'What a questioner he is. Ask no questions, and you’ll be told no lies.'
+  book.image.attach(io: File.open("./storage/default-images/great-expectations.jpg"), filename: 'great-expectations.jpg')
+  book.save # will cause the blob path to update
+  book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
+end
+# . . .
+Book.create! do |book|
+  book.title = 'The Strange Case Of Dr. Jekyll And Mr. Hyde'
+  book.language = 'English'
+  book.author = 'Robert Louis Stevenson'
+  book.published = 1886
+  book.excerpt = 'From that time forward, Mr. Utterson began to haunt the 
+  door in the by-street of shops. In the morning before office hours, at 
+  noon when business was plenty and time scarce, at night under the face 
+  of the fogged city moon, by all lights and at all hours of solitude or 
+  concourse, the lawyer was to be found on his chosen post. If he be Mr. Hyde, 
+  he had thought, I shall be Mr. Seek.'
+  book.image.attach(io: File.open("./storage/default-images/jekyll-hyde.jpg"), filename: 'jekyll-hyde.jpg')
+  book.save # will cause the blob path to update
+  book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
+end
