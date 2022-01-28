@@ -8,36 +8,49 @@
 #---
 # encoding: utf-8
 Product.delete_all
-Product.create!(
-  title: 'Docker for Rails Developers',
-  description:'Build, Ship, and Run Your Applications Everywhere.
+# . . .
+Product.create! do |p|
+  p.title = 'Docker for Rails Developers'
+  p.description = 'Build, Ship, and Run Your Applications Everywhere.
       Docker does for DevOps what Rails did for web development—it gives you 
       a new set of superpowers. Gone are “works on my machine” woes and lengthy 
       setup tasks, replaced instead by a simple, consistent, Docker-based 
       development environment that will have your team up and running in seconds. 
-      Gain hands-on, real-world experience with a tool that’s rapidly becoming 
+      Gain hands-on, real-world experience with a tool thats rapidly becoming 
       fundamental to software development. Go from zero all the way to production 
       as Docker transforms the massive leap of deploying your app in the cloud 
-      into a baby step.',
-  image_url: nil,
-  price: 38.00
-)
+      into a baby step.'
+  p.image_url = nil
+  p.price = 38.00
+  # p.image.attach(io: File.open("./storage/architecture.png"), filename: 'architecture.png')
+  puts p.image.attached?
+  # puts File.dirname("./storage/architecture.png")
+end
 # . . .
-Product.create!(
-  title: 'Build Chatbot Interactions',
-  description: 'Responsive, Intuitive Interfaces with Ruby.
-      The next step in the evolution of user interfaces is here. 
-      Chatbots let your users interact with your service in their
-      own natural language. Use free and open source tools along 
-      with Ruby to build creative, useful, and unexpected interactions 
-      for users. Take advantage of the Lita framework’s step-by-step 
-      implementation strategy to simplify bot development and testing.
-      From novices to experts, chatbots are an area in which everyone 
-      can participate. Exercise your creativity by creating chatbot 
-      skills for communicating, information, and fun.',
-  image_url: nil,
-  price: 20.00
-)
+Product.new do |p|
+  p.title = 'Build Chatbot Interactions'
+  p.description = 'Responsive, Intuitive Interfaces with Ruby
+The next step in the evolution of user interfaces is here. 
+Chatbots let your users interact with your service in their
+own natural language. Use free and open source tools along 
+with Ruby to build creative, useful, and unexpected interactions 
+for users. Take advantage of the Lita framework’s step-by-step 
+implementation strategy to simplify bot development and testing.
+From novices to experts, chatbots are an area in which everyone 
+can participate. Exercise your creativity by creating chatbot 
+skills for communicating, information, and fun.'
+  p.image_url = nil
+  p.price = 20.00
+  p.save
+end
+
+Product.new do |p|
+  p.title = "test"
+  p.description = 'test test'
+  p.image_url = nil
+  p.price = 90.00
+  p.save
+end
 # . . .
 Product.create!(title: 'Programming Crystal',
   description:'Create High-Performance, Safe, Concurrent Apps.
