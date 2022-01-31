@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
 
   def index
-    render json: Book.all
+    @books = Book.all
+    render json: @books
   end
 
   def show
@@ -11,7 +12,6 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new
-
     @book.title = params[:book][:title]
     @book.language = params[:book][:language]
     @book.author = params[:book][:author]
@@ -36,6 +36,23 @@ class BooksController < ApplicationController
     end
   end
 
+  # PATCH/PUT /products/1
+  def update
+    @book.update(book_params) # will update everything but the image_url
+    if params[:book][:image]
+      @book.image_url = Rails.application.routes.url_helpers.rails_blob_path(@book.image, only_path: true)
+      @book.save
+    end
+  
+    if @book.errors.size > 0
+      render json: @book.errors, status: :unprocessable_entity
+    else
+      render json: @book, status: :ok
+    end
+  end
+
+  
+ 
   private 
   # Use callbacks to share common setup or constraints between actions.
   def set_book
@@ -49,7 +66,7 @@ class BooksController < ApplicationController
       :author,
       :published,
       :excerpt,
-      :image_url,
+      :image_url, #remove this
       :image
     )
   end
