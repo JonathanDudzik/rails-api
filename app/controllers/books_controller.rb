@@ -51,7 +51,12 @@ class BooksController < ApplicationController
     end
   end
 
-  
+  def destroy
+    # add confirmation on the front end
+    @book.destroy
+    head :no_content
+  end
+ 
  
   private 
   # Use callbacks to share common setup or constraints between actions.
