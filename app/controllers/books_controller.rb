@@ -36,7 +36,7 @@ class BooksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
+  # PATCH/PUT /books/1
   def update
     @book.update(book_params) # will update everything but the image_url
     if params[:book][:image]
