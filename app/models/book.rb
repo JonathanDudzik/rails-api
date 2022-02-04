@@ -2,8 +2,8 @@ class ImageValidator < ActiveModel::Validator
     def validate(record)
         @record = record
         @acceptableContentTypes = %w(image/gif image/jpeg image/png)
-        unless @acceptableContentTypes.include?(@record.image.content_type)
-            record.errors.add :base, "Record type must be a GIF, JPEG, or PNG"
+        unless @record.image.attached? && @acceptableContentTypes.include?(@record.image.content_type)
+            record.errors.add :image, "Image must be attached and a GIF, JPEG, or PNG file"
         end
     end
 end
