@@ -21,18 +21,16 @@ class BooksController < ApplicationController
     if params[:book][:image]
       @book.image.attach(params[:book][:image])
     else
-      @book.image.attach(io: File.open("./storage/default-images/default-image.png"), filename: 'default-image.png')
+      @book.image.attach(io: File.open("./storage/seed-and-default-images/default-image.png"), filename: 'default-image.png')
     end
     
     @book.save # will cause the blob path to update
-    @book.image_url = Rails.application.routes.url_helpers.rails_blob_path(@book.image, only_path: true)
-
-    if @book.save
-      # do something on success
-      render json: @book, status: :created
-    else
-      # do something on failure
+    @book.update(image_url: rails_blob_url(@book.image))
+    
+    if @book.errors.size > 0
       render json: @book.errors, status: :unprocessable_entity
+    else
+      render json: @book, status: :ok
     end
   end
 

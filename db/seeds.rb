@@ -1,4 +1,4 @@
-Book.delete_all
+# Book.delete_all
 Book.create! do |book|
   book.title = 'Belgian Fairy Tales'
   book.language = 'English'
@@ -12,7 +12,7 @@ Book.create! do |book|
     first farmers in the Middle States. Moreover, when New 
     Netherland received a civil government, it was named Nova 
     Belgica, or New Belgium.'
-  book.image.attach(io: File.open("./storage/default-images/belgiam-fairy-tales.jpg"), filename: 'belgiam-fairy-tales.jpg')
+  book.image.attach(io: File.open("./storage/seed-and-default-images/belgiam-fairy-tales.jpg"), filename: 'belgiam-fairy-tales.jpg')
   book.save # will cause the blob path to update
   book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
   # the create method will save the new record into the database
@@ -27,7 +27,7 @@ Book.create! do |book|
   and then dipped suddenly down, so suddenly that Alice had not a moment to 
   think about stopping herself before she found herself falling down a very 
   deep well.'
-  book.image.attach(io: File.open("./storage/default-images/alice-in-wonderland.jpg"), filename: 'alice-in-wonderland.jpg')
+  book.image.attach(io: File.open("./storage/seed-and-default-images/alice-in-wonderland.jpg"), filename: 'alice-in-wonderland.jpg')
   book.save
   book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
 end
@@ -38,7 +38,7 @@ Book.create! do |book|
   book.author = 'Charles Dickens'
   book.published = 1867
   book.excerpt = 'What a questioner he is. Ask no questions, and you’ll be told no lies.'
-  book.image.attach(io: File.open("./storage/default-images/great-expectations.jpg"), filename: 'great-expectations.jpg')
+  book.image.attach(io: File.open("./storage/seed-and-default-images/great-expectations.jpg"), filename: 'great-expectations.jpg')
   book.save
   book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
 end
@@ -54,7 +54,7 @@ Book.create! do |book|
   of the fogged city moon, by all lights and at all hours of solitude or 
   concourse, the lawyer was to be found on his chosen post. If he be Mr. Hyde, 
   he had thought, I shall be Mr. Seek.'
-  book.image.attach(io: File.open("./storage/default-images/jekyll-hyde.jpg"), filename: 'jekyll-hyde.jpg')
+  book.image.attach(io: File.open("./storage/seed-and-default-images/jekyll-hyde.jpg"), filename: 'jekyll-hyde.jpg')
   book.save
   book.image_url = Rails.application.routes.url_helpers.rails_blob_path(book.image, only_path: true)
 end
